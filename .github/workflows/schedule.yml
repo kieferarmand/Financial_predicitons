@@ -1,0 +1,16 @@
+name: Schedule workflow
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/2 * * * *'
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log time
+        run:  |
+          current_date_time-$(date)
+          echo "Current data and time: $current_date_time"
