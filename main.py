@@ -1,6 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
+import os
+import re
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
@@ -77,11 +79,16 @@ for x in range(5):
   standings = standings.sort_values(by=['Series Win %', 'Game Win %'], ascending=False)
   predictions[row.iloc[1]] = standings
 
+os.makedirs("masterfile", exist_ok=True)
+os.makedirs("individual", exist_ok=True)
 
-for k,v in predictions.items():
-  filename = k + '.csv'
-  v.to_csv(filename, index=True)
-with open("all_predictions.csv", "w") as f:
+for k, v in predictions.items():
+    safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', k)
+    filename = f"individual/{safe_name}.csv"
+    v.to_csv(filename, index=True)
+master_path = "masterfile/all_predictions.csv"
+
+with open(master_path, "w") as f:
     for username, df in predictions.items():
         f.write(f"{username}\n")
         df.to_csv(f, index=True)
