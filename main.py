@@ -39,7 +39,7 @@ matches = [
 ]
 
 predictions = {}
-for x in range(6):
+for x in range(len(data)):
   row = data.iloc[x+1]
   standings = base_standings.copy()
   index = 2
