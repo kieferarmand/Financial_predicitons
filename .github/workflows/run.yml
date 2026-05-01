@@ -1,9 +1,10 @@
 name: Update Predictions
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "*/10 * * * *"
-  workflow_dispatch:
+  
 
 permissions:
   contents: write
