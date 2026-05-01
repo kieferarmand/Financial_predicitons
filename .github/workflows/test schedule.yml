@@ -1,0 +1,13 @@
+name: Test Schedule
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"  # every 10 minutes
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print message
+        run: echo "Scheduled workflow ran at $(date)"
