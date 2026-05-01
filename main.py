@@ -7,7 +7,7 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 creds = Credentials.from_service_account_file("credentials.json", scopes=SCOPES)
 gc = gspread.authorize(creds)
 
-sheet = gc.open("predictions").worksheet("Form Responses 1")
+sheet = gc.open_by_url("https://docs.google.com/spreadsheets/d/1S_Pa05YUIkdhodB_mR7h3fLbkwCrpl-h0zTWHP-6F2U/edit?gid=1867461690#gid=1867461690").worksheet("Form Responses 1")
 data = pd.DataFrame(sheet.get_all_records())
 
 
