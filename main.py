@@ -40,7 +40,7 @@ matches = [
 
 predictions = {}
 for x in range(len(data)):
-  row = data.iloc[x+1]
+  row = data.iloc[x]
   standings = base_standings.copy()
   index = 2
   for match in matches:
